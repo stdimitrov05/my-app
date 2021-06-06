@@ -19,8 +19,9 @@ mongoose.connect(
   () => {
     console.log("Connected to MongoDB");
   }
+  
 );
-app.use("/images", express.static(path.join(__dirname, "public/images")));
+app.use("./images", express.static(path.join(__dirname, "public/images")));
 
 //middleware
 app.use(express.json());
@@ -37,7 +38,7 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
-app.post("/api/upload", upload.single("file"), (req, res) => {
+app.post("/upload", upload.single("file"), (req, res) => {
   try {
     return res.status(200).json("File uploded successfully");
   } catch (error) {
@@ -45,9 +46,9 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
   }
 });
 
-app.use("/api/auth", authRoute);
-app.use("/api/users", userRoute);
-app.use("/api/posts", postRoute);
+app.use("./routes/auth", authRoute);
+app.use("./routes/users", userRoute);
+app.use("./routes/posts", postRoute);
 
 app.listen(8800, () => {
   console.log("Backend server is running!");
