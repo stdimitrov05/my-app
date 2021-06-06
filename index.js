@@ -5,9 +5,9 @@ const dotenv = require("dotenv");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const multer = require("multer");
-const userRoute = require("./routes/users");
-const authRoute = require("./routes/auth");
-const postRoute = require("./routes/posts");
+const userRoute = require("./api/routes/users");
+const authRoute = require("./api/routes/auth");
+const postRoute = require("./api/routes/posts");
 const router = express.Router();
 const path = require("path");
 
@@ -50,6 +50,6 @@ app.use("./routes/auth", authRoute);
 app.use("./routes/users", userRoute);
 app.use("./routes/posts", postRoute);
 
-app.listen(8800, () => {
+app.listen(3000, () => {
   console.log("Backend server is running!");
 });
